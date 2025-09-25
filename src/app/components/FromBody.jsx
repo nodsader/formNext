@@ -16,12 +16,20 @@ export default function FromBody() {
         firstName: "",
         role: "",
         linkedin: "",
+        projectFile: null,
+        brief: null,
+        recommendation: "",
+        hope: "",
     })
 
     const sanitizeInput = (value) => {
-        return value.replace(/[<>]/g, "").trim()
+        return value.replace(/[<>]/g, "")
     }
 
+    const handleSubmit = () => {
+        console.log("Formulaire envoyé !", formData)
+
+    }
 
     const addTag = (tag) => {
         setFormData((prev) => ({
@@ -40,7 +48,7 @@ export default function FromBody() {
     const handleChange = (field, value) => {
         setFormData((prev) => ({
             ...prev,
-            [field]: sanitizeInput(value),
+            [field]: value instanceof File ? value : sanitizeInput(value),
         }))
     }
 
@@ -61,6 +69,7 @@ export default function FromBody() {
             {currentStep === 1 && (
                 <Slide2
                     formData={formData}
+                    setFormData={setFormData}
                     handleChange={handleChange}
                     nextStep={nextStep}
                     prevStep={prevStep}
@@ -68,9 +77,9 @@ export default function FromBody() {
             )}
             {currentStep === 2 && (
                 <Slide3
-                    formData={formData}
-                    handleChange={handleChange}
+                    formData={formData} handleChange={handleChange}
                     prevStep={prevStep}
+                    handleSubmit={handleSubmit}
                 />
             )}
         </div>

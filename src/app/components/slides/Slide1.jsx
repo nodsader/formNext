@@ -1,7 +1,6 @@
 import FormInput from "@/components/FormInput";
 import TagSelector from "@/components/TageSelector"
 
-
 export default function Slide1({ formData, handleChange, nextStep, addTag, removeTag }) {
     const fields = [
         { label: "Nom du projet", field: "projectName" },
@@ -10,10 +9,12 @@ export default function Slide1({ formData, handleChange, nextStep, addTag, remov
         { label: "Nom", field: "name" },
         { label: "Prénom", field: "firstName" },
         { label: "Quel est votre rôle ?", field: "role" },
-        { label: "Vous avez un profil LinkedIn ?", field: "linkedin" },
+        { label: "Vous avez un profil LinkedIn ?", field: "linkedin", type: "url" },
     ]
 
-    const availableTags = ["Blockchain", "AI", "SaaS", "E-commerce", "FinTech"]
+
+
+    const availableTags = ["Blockchain", "AI", "SaaS", "E-commerce", "FinTech", "Startup", "Produit"]
 
     return (
         <div>
@@ -24,12 +25,13 @@ export default function Slide1({ formData, handleChange, nextStep, addTag, remov
                     key={f.field}
                     label={f.label}
                     field={f.field}
+                    type={f.type}
                     formData={formData}
                     handleChange={handleChange}
                 />
             ))}
 
-            <div className="mb-6">
+            <div className="mb-6 w-1/2 flex-wrap">
                 <label className="block text-sm text-gray-400 mb-2">
                     Catégories
                 </label>
